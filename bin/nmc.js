@@ -27,7 +27,7 @@ if (npmArgs.length === 0 || npmArgs[0] === '--help' || npmArgs[0] === '-h') {
 
 if (npmArgs[0] === '--nmc-clean') {
   rimraf.sync(cacheDir);
-  logger.info('Cache is cleaned.');
+  logger.info('Cache is cleaned.\n');
   process.exit(0);
 }
 
