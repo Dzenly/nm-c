@@ -16,7 +16,7 @@ const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
 function showHelp() {
-  console.log('Usage: "nmc <arbitrary arguments for npm>" - runs npm with the specified arguments or unzips archieve from cache.');
+  console.log('Usage: "nmc <arbitrary arguments for npm>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
   console.log('"nmc --nmc-clean" - cleans the whole cache.');
   console.log('"nmc --nmc-cache-size" - returns size of current cache.');
   process.exit(0);
