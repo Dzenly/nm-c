@@ -1,5 +1,5 @@
 {
-  "name": "n-m-c",
+  "name": "@dzenly/nmc",
   "version": "0.0.3",
   "description": "Node modules cache",
   "engines": {
