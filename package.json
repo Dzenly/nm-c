@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Dzenly/nm-c#readme",
   "dependencies": {
+    "rimraf": "^2.6.3",
     "tar": "^4.4.10"
   }
 }
