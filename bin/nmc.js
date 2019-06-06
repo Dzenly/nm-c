@@ -15,10 +15,14 @@ const { cacheDir, npmArgs, cwd } = require('../lib/common');
 const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
-if (npmArgs.length === 0) {
+function showHelp() {
   console.log('Usage: "nmc <arbitrary arguments for npm>"');
   console.log('Exception: "nmc --nmc-clean" = cleans the whole cache');
   process.exit(0);
+}
+
+if (npmArgs.length === 0 || npmArgs[0] === '--help' || npmArgs[0] === '-h') {
+  showHelp();
 }
 
 if (npmArgs[0] === '--nmc-clean') {
