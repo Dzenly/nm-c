@@ -1,9 +1,9 @@
 # Node moudules cache
 
 ```
-Usage: "nmc <arbitrary arguments for npm>"
-Exception: "nmc --nmc-clean" = cleans the whole cache
-
+  'Usage: "nmc <arbitrary arguments for npm>" - runs npm with the specified arguments or unzips archieve from cache.'
+  "nmc --nmc-clean" - cleans the whole cache.'
+  "nmc --nmc-cache-size" - returns size of current cache.'
 ```
 
 Calculates sha256 hash from:

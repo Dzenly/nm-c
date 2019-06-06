@@ -5,7 +5,7 @@
 // http://sambal.org/2014/02/passing-options-node-shebang-line/
 
 const path = require('path');
-const { existsSync } = require('fs');
+const { existsSync, readdirSync, statSync } = require('fs');
 
 const rimraf = require('rimraf');
 
@@ -16,8 +16,9 @@ const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
 function showHelp() {
-  console.log('Usage: "nmc <arbitrary arguments for npm>"');
-  console.log('Exception: "nmc --nmc-clean" = cleans the whole cache');
+  console.log('Usage: "nmc <arbitrary arguments for npm>" - runs npm with the specified arguments or unzips archieve from cache.');
+  console.log('"nmc --nmc-clean" - cleans the whole cache.');
+  console.log('"nmc --nmc-cache-size" - returns size of current cache.');
   process.exit(0);
 }
 
@@ -28,6 +29,19 @@ if (npmArgs.length === 0 || npmArgs[0] === '--help' || npmArgs[0] === '-h') {
 if (npmArgs[0] === '--nmc-clean') {
   rimraf.sync(cacheDir);
   logger.info('Cache is cleaned.\n');
+  process.exit(0);
+}
+
+if (npmArgs[0] === '--nmc-cache-size') {
+
+  let size = 0;
+  const files = readdirSync(cacheDir);
+
+  for (const file of files) {
+    const fPath = path.join(cacheDir, file);
+    size += statSync(fPath).size;
+  }
+  logger.info(`Cache size is ${(size / 1024 / 1024).toFixed(2)} MB.\n`);
   process.exit(0);
 }
 
