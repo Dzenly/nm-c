@@ -3,7 +3,7 @@
   "version": "0.0.5",
   "description": "Node modules cache",
   "bin": {
-    "mnc": "bin/nmc.js"
+    "nmc": "bin/nmc.js"
   },
   "engines": {
     "node": ">=10.15.3"
