@@ -1,5 +1,7 @@
 # Node moudules cache
 
+npm install -g @dzenly/nmc
+
 ```
   'Usage: "nmc <arbitrary arguments for npm>" - runs npm with the specified arguments or unzips archieve from cache.'
   "nmc --nmc-clean" - cleans the whole cache.'
