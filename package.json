@@ -1,0 +1,29 @@
+{
+  "name": "nm-c",
+  "version": "0.0.1",
+  "description": "Node modules cache",
+  "engines": {
+    "node": ">=10.15.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dzenly/nm-c.git"
+  },
+  "keywords": [
+    "npm",
+    "node_modules",
+    "cache"
+  ],
+  "author": "Dzenly <alexchem@yandex.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dzenly/nm-c/issues"
+  },
+  "homepage": "https://github.com/Dzenly/nm-c#readme",
+  "dependencies": {
+    "tar": "^4.4.10"
+  }
+}
