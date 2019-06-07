@@ -5,7 +5,7 @@
 // http://sambal.org/2014/02/passing-options-node-shebang-line/
 
 const path = require('path');
-const { existsSync, readdirSync, statSync } = require('fs');
+const { existsSync, readdirSync, statSync, openSync, closeSync } = require('fs');
 
 const rimraf = require('rimraf');
 
@@ -54,25 +54,42 @@ async function run() {
   rimraf.sync(path.join(cwd, 'node_modules'));
   logger.info('Done.\n');
 
-  const hash = await calcHash();
+  const { hash, nameAndVersion } = await calcHash();
   const tgzPath = path.join(cacheDir, `${hash}.tgz`);
+  const postinstallFlagPath = path.join(cacheDir, `${hash}.postinstall`);
+
   const exists = existsSync(tgzPath);
   if (exists) {
     logger.info('Hash found in cache, unzipping...\n');
     unpack(cwd, tgzPath);
-    logger.info('Unzipping is done.\n');
+    logger.info('Unzipping is done, let`s check for postinstall.\n');
+
+    if (existsSync(postinstallFlagPath)) {
+      logger.info('Postinstall flag is found, let`s run it.\n');
+      await spawn({
+        command: 'npm',
+        args: ['run', 'postinstall'],
+      });
+      logger.info('Postinstall is finished.\n');
+    }
+
     console.timeEnd(timeLabel);
     process.exit(0);
   }
 
   logger.info(`Hash not found in cache, installing as npm ${npmArgs.join(' ')} ...\n`);
 
-  await spawn({
+  const res = await spawn({
     command: 'npm',
     args: npmArgs,
     cwd,
     exceptionIfErrorCode: true,
   });
+
+  if (res.out.includes(`${nameAndVersion} postinstall`)) {
+    logger.info('Postinstall is detected, let`s save it.\n');
+    closeSync(openSync(postinstallFlagPath, 'w'));
+  }
 
   logger.info('Installing is done, zipping...\n');
 
