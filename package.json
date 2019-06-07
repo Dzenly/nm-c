@@ -1,6 +1,6 @@
 {
   "name": "@dzenly/nmc",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "Node modules cache",
   "bin": {
     "nmc": "bin/nmc.js"
