@@ -7,7 +7,7 @@ npm install -g @dzenly/nmc
 ## Usage
 
 ### `nmc <npm arguments destined for installation the whole node_modules>`
-Runs npm with the specified arguments (saving node_modules in cache) or unzips archieve from cache.'
+Runs npm with the specified arguments (saving node_modules in cache) or unzips archieve from cache.
 
 ### `nmc --nmc-clean`
 Cleans the whole nmc cache.
