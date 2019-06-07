@@ -3,7 +3,7 @@
 npm install -g @dzenly/nmc
 
 ```
-  'Usage: "nmc <arbitrary arguments for npm>"
+  'Usage: "nmc <npm arguments destined for installation>"
    - runs npm with the specified arguments
    (saving node_modules in cache)
    or unzips archieve from cache.'
