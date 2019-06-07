@@ -16,9 +16,10 @@ const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
 function showHelp() {
-  console.log('Usage: "nmc <npm arguments destined for installation>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
+  console.log('Usage: "nmc <npm arguments destined for installation the whole node_modules>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
   console.log('"nmc --nmc-clean" - cleans the whole cache.');
   console.log('"nmc --nmc-cache-size" - returns size of current cache.');
+  console.log('\n"Examples: "nmc ci", "nmc ci --production", "nmc install"');
   process.exit(0);
 }
 

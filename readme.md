@@ -3,7 +3,7 @@
 npm install -g @dzenly/nmc
 
 ```
-  'Usage: "nmc <npm arguments destined for installation>"
+  'Usage: "nmc <npm arguments destined for installation the whole node modules>"
    - runs npm with the specified arguments
    (saving node_modules in cache)
    or unzips archieve from cache.'
@@ -11,6 +11,8 @@ npm install -g @dzenly/nmc
   "nmc --nmc-clean" - cleans the whole cache.'
 
   "nmc --nmc-cache-size" - returns size of current cache.'
+  
+  Examples: "nmc ci", "nmc ci --production", "nmc install"
 ```
 
 Calculates sha256 hash from:
@@ -43,6 +45,11 @@ Please, use only npm arguments destined to installation. For other arguments the
 
 nmc does not support uninstall. So you can use `npm install -S some-module` and then run `nmc install`
 to cache you new node_modules.
+
+## About nmc install some-new-module
+
+No, no, no. Use only commands for the whole node_modules installation
+for your package.json, package-lock.json and npm-shrinkwrap.json.
 
 ## Use cases
 
