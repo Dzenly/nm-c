@@ -13,7 +13,7 @@ Runs npm with the specified arguments (saving node_modules in cache) or unzips a
 Cleans the whole nmc cache.
 
 ### `nmc --nmc-cache-size`
-Returns size of current cache.`
+Returns size of current cache.
   
 ### Examples:
 * `nmc ci`
