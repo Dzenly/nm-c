@@ -1,21 +1,28 @@
 # Node modules cache
 
+## Installation
+
 npm install -g @dzenly/nmc
 
-```
-  'Usage: "nmc <npm arguments destined for installation the whole node modules>"
-   - runs npm with the specified arguments
-   (saving node_modules in cache)
-   or unzips archieve from cache.'
+## Usage
 
-  "nmc --nmc-clean" - cleans the whole cache.'
+### `nmc <npm arguments destined for installation the whole node_modules>`
+Runs npm with the specified arguments (saving node_modules in cache) or unzips archieve from cache.'
 
-  "nmc --nmc-cache-size" - returns size of current cache.'
+### `nmc --nmc-clean`
+Cleans the whole nmc cache.
+
+### `nmc --nmc-cache-size`
+Returns size of current cache.`
   
-  Examples: "nmc ci", "nmc ci --production", "nmc install"
-```
+### Examples:
+* `nmc ci`
+* `nmc ci --production`
+* `nmc install`
 
-Calculates sha256 hash from:
+## How it works
+
+It calculates sha256 hash from:
 * os.arch()
 * os.platform()
 * os.release()
@@ -27,10 +34,10 @@ Calculates sha256 hash from:
 * package-lock.json (if exists)
 * npm-shrinkwrap.json (if exists)
 
-Saves node_modules as `<hash>.tgz` to the inner directory.
-
 If hash is found in cache - just unzips it from cache.
-If hash is not found - runs npm with specified parameters and then saves node_modules to cache.
+
+If hash is not found - runs npm with specified parameters and then saves node_modules
+the inner directory (cache) as `<hash>.tgz`.
 
 ## Warning about postinstall.
 
