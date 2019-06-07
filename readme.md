@@ -40,3 +40,8 @@ So if your dependencies do something outside its node_modules, nmc, probably, is
 
 nmc does not support uninstall. So you can use `npm install -S some-module` and then run `nmc install`
 to cache you new node_modules.
+
+## Use cases
+
+* CI builds speed up.
+* Fast branch switching for developers.
