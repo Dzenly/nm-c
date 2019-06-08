@@ -56,13 +56,13 @@ async function run() {
   logger.info('Done.\n');
 
   const { hash, nameAndVersion } = await calcHash();
-  const tgzPath = path.join(cacheDir, `${hash}.tgz`);
+  const txzPath = path.join(cacheDir, `${hash}.txz`);
   const postinstallFlagPath = path.join(cacheDir, `${hash}.postinstall`);
 
-  const exists = existsSync(tgzPath);
+  const exists = existsSync(txzPath);
   if (exists) {
     logger.info('Hash found in cache, unzipping...\n');
-    unpack(cwd, tgzPath);
+    unpack(cwd, txzPath);
     logger.info('Unzipping is done, let`s check for postinstall.\n');
 
     if (existsSync(postinstallFlagPath)) {
@@ -80,6 +80,10 @@ async function run() {
 
   logger.info(`Hash not found in cache, installing as npm ${npmArgs.join(' ')} ...\n`);
 
+  // Use for debug.
+  // delete process.env.NODE_OPTIONS;
+  // delete process.env.JS_DEBUG_FILE;
+
   const res = await spawn({
     command: 'npm',
     args: npmArgs,
@@ -94,7 +98,7 @@ async function run() {
 
   logger.info('Installing is done, zipping...\n');
 
-  pack(cwd, tgzPath, ['node_modules']);
+  pack(cwd, txzPath, ['node_modules']);
 
   logger.info('Zipping is done.\n');
   console.timeEnd(timeLabel);
