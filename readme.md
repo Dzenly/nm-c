@@ -4,7 +4,7 @@
 
 You must have `tar`, supporting `xpJSf` options, in your OS.
 So everything is ok on Linux. But for Windows you must use tar from cygwin or smth like.
-I could use npm tar module, but this supports max 99 symbols in file name.
+I could use npm tar module, but it supports max 99 symbols in file name.
 If tar module will be fixed, I will use it.
 
 ## Installation
