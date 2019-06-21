@@ -15,6 +15,8 @@ const { cacheDir, npmArgs, cwd } = require('../lib/common');
 const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
+const npm = process.env.NPM_ORIG | 'npm';
+
 function showHelp() {
   console.log('Usage: "nmc <npm arguments destined for installation the whole node_modules>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
   console.log('"nmc --nmc-clean" - cleans the whole cache.');
@@ -68,7 +70,7 @@ async function run() {
     if (existsSync(postinstallFlagPath)) {
       logger.info('Postinstall flag is found, let`s run it.\n');
       await spawn({
-        command: 'npm',
+        command: npm,
         args: ['run', 'postinstall'],
       });
       logger.info('Postinstall is finished.\n');
@@ -85,7 +87,7 @@ async function run() {
   // delete process.env.JS_DEBUG_FILE;
 
   const res = await spawn({
-    command: 'npm',
+    command: npm,
     args: npmArgs,
     cwd,
     exceptionIfErrorCode: true,
