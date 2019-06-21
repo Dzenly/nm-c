@@ -96,4 +96,4 @@ $NPM_ORIG "$@"
 
 And add it to path: `export PATH=~/bin:$PATH`
 
-So nmc will be used instead of npm if $NPM_USE_NMC will be defined.
+So nmc will be used instead of npm if NPM_USE_NMC will be defined.
