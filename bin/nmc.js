@@ -53,6 +53,18 @@ const timeLabel = 'nmc time';
 console.time(timeLabel);
 
 async function run() {
+
+  const isGlobal = npmArgs.includes('-g');
+  if (isGlobal) {
+    logger.info('Global installation, nmc is ignored.');
+    const res = await spawn({
+      command: npm,
+      args: npmArgs,
+      cwd,
+    });
+    process.exit(res.code);
+  }
+
   logger.info('Remove node_modules...');
   rimraf.sync(path.join(cwd, 'node_modules'));
   logger.info('Done.\n');
