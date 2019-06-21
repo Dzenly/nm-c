@@ -44,7 +44,7 @@ It calculates sha256 hash from:
 If hash is found in cache - just unzips it from cache.
 
 If hash is not found - runs npm with specified parameters and then saves node_modules to
-the inner directory (cache) as `<hash>.tgz`.
+the inner directory (cache) as `<hash>.txz`.
 
 ## Warning about postinstall.
 
