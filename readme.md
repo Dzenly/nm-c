@@ -1,6 +1,6 @@
 # Node modules cache
 
-Speeds up npm install / npm ci commands. Especially if you have multi-core CPU.
+Speeds up `npm install` / `npm ci` commands. Especially if you have multi-core CPU.
 
 ## Known issue on Windows
 
