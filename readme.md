@@ -69,3 +69,31 @@ for your package.json, package-lock.json and npm-shrinkwrap.json.
 
 * CI builds speed up.
 * Fast branch switching for developers.
+
+## Environment variables
+
+* NPM_ORIG - path to npm binary, it allows to create such a script at your `~/bin/npm`.
+
+```
+#!/usr/bin/env bash
+
+if [ -z "$NPM_ORIG" ]; then
+  export NPM_ORIG=$(dirname $(which nmc))/npm
+fi
+
+if [[ -n "$NPM_USE_NMC" ]]; then
+  if [[ "$1" == "install" || "$1" == "i" || "$1" == "ci" ]];then
+    echo Install by NMC $NPM_ORIG "$@"
+    nmc "$@"
+    exit
+  fi
+fi
+
+echo Install by NPM $NPM_ORIG "$@"
+
+$NPM_ORIG "$@"
+```
+
+And add it to path: `export PATH=~/bin:$PATH`
+
+So nmc will be used instead of npm if $NPM_USE_NMC will be defined.
