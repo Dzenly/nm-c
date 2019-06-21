@@ -15,7 +15,7 @@ const { cacheDir, npmArgs, cwd } = require('../lib/common');
 const { pack, unpack } = require('../lib/tar-utils');
 const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
-const npm = process.env.NPM_ORIG | 'npm';
+const npm = process.env.NPM_ORIG || 'npm';
 
 function showHelp() {
   console.log('Usage: "nmc <npm arguments destined for installation the whole node_modules>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
@@ -56,7 +56,7 @@ async function run() {
 
   const isGlobal = npmArgs.includes('-g');
   if (isGlobal) {
-    logger.info('Global installation, nmc is ignored.');
+    logger.info('Global installation, nmc is ignored.\n');
     const res = await spawn({
       command: npm,
       args: npmArgs,
