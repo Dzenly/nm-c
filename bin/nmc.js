@@ -17,6 +17,11 @@ const { spawnAndGetOutputsStr: spawn } = require('../lib/spawn-utils');
 
 const npm = process.env.NPM_ORIG || 'npm';
 
+process.on('unhandledRejection', error => {
+  console.log('Unhandled Rejection Handler', error.message);
+  process.exit(1);
+});
+
 function showHelp() {
   console.log('Usage: "nmc <npm arguments destined for installation the whole node_modules>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
   console.log('"nmc --nmc-clean" - cleans the whole cache.');
@@ -61,6 +66,7 @@ async function run() {
       command: npm,
       args: npmArgs,
       cwd,
+      exceptionIfErrorCode: true,
     });
     process.exit(res.code);
   }
@@ -84,6 +90,7 @@ async function run() {
       await spawn({
         command: npm,
         args: ['run', 'postinstall'],
+        exceptionIfErrorCode: true,
       });
       logger.info('Postinstall is finished.\n');
     }
