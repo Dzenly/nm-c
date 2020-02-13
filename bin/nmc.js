@@ -81,22 +81,25 @@ async function run() {
 
   const exists = existsSync(txzPath);
   if (exists) {
-    logger.info('Hash found in cache, unzipping...\n');
-    unpack(cwd, txzPath);
-    logger.info('Unzipping is done, let`s check for postinstall.\n');
+    const fSize = statSync(txzPath).size;
+    if (fSize > 10) {
+      logger.info('Hash found in cache, unzipping...\n');
+      unpack(cwd, txzPath);
+      logger.info('Unzipping is done, let`s check for postinstall.\n');
 
-    if (existsSync(postinstallFlagPath)) {
-      logger.info('Postinstall flag is found, let`s run it.\n');
-      await spawn({
-        command: npm,
-        args: ['run', 'postinstall'],
-        exceptionIfErrorCode: true,
-      });
-      logger.info('Postinstall is finished.\n');
+      if (existsSync(postinstallFlagPath)) {
+        logger.info('Postinstall flag is found, let`s run it.\n');
+        await spawn({
+          command: npm,
+          args: ['run', 'postinstall'],
+          exceptionIfErrorCode: true,
+        });
+        logger.info('Postinstall is finished.\n');
+      }
+
+      console.timeEnd(timeLabel);
+      process.exit(0);
     }
-
-    console.timeEnd(timeLabel);
-    process.exit(0);
   }
 
   logger.info(`Hash not found in cache, installing as npm ${npmArgs.join(' ')} ...\n`);
