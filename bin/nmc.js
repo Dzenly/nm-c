@@ -23,6 +23,8 @@ process.on('unhandledRejection', error => {
 });
 
 function showHelp() {
+  const { version } = require('../package.json');
+  console.log(`Version: ${version}`);
   console.log('Usage: "nmc <npm arguments destined for installation the whole node_modules>" - runs npm with the specified arguments (saving node_modules in cache), or unzips archieve from cache.');
   console.log('"nmc --nmc-clean" - cleans the whole cache.');
   console.log('"nmc --nmc-cache-size" - returns size of current cache.');
